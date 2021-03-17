@@ -1,10 +1,12 @@
 const express = require('express');
 const request = require('request')
 const app = express()
-
+const dotenv = require('dotenv')
 // ejs -> embeded javascript --middleware and a templating engine
 app.set('view engine', "ejs");
 
+//configure environment variable
+dotenv.config()
 
 /*
 Routing 
@@ -17,7 +19,7 @@ app.get('/', (req, res)=>{
 
 app.get('/result', (req,res)=>{
     // res.send('The movie to search is ' + req.query.movieName);
-    const url = `http://www.omdbapi.com/?apikey=cfd672ef&s=${req.query.movieName}`;
+    const url = `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=${req.query.movieName}`;
     request(url , (err , response , body)=>{
         if(!err && res.statusCode === 200)
         {
@@ -29,13 +31,12 @@ app.get('/result', (req,res)=>{
             res.send('Something went Wrong !')
         }
     })
-
 })
 
 
 app.get('/result/:id', (req, res)=>{
     
-    const url = `http://www.omdbapi.com/?apikey=cfd672ef&i=${req.params.id}`;
+    const url = `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${req.params.id}`;
     request(url , (err , response , body)=>{
         if(!err && res.statusCode === 200)
         {
@@ -47,7 +48,6 @@ app.get('/result/:id', (req, res)=>{
             res.send('Something went Wrong !')
         }
     })
-
 })
 
 

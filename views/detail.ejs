@@ -1,14 +1,17 @@
 <%- include("./partials/header")%>  
 
 <div class="container">
-    
+
     <h1>This is the Movie Details !! </h1>
 
 
     <% if(data.Rated ===  'PG-13' ){ %>
-        <div class="alert alert-warning" role="alert">
-            Please Watch With Parents !!
-          </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Adult Only !</strong> plesae watch wiht parents
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
         <%}%>
 
     <h1><%=data.Title%></h1>
