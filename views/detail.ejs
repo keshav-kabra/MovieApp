@@ -1,0 +1,28 @@
+<%- include("./partials/header")%>  
+
+<div class="container">
+    
+    <h1>This is the Movie Details !! </h1>
+
+
+    <% if(data.Rated ===  'PG-13' ){ %>
+        <div class="alert alert-warning" role="alert">
+            Please Watch With Parents !!
+          </div>
+        <%}%>
+
+    <h1><%=data.Title%></h1>
+    <p><%=data.Plot%></p>
+    
+    <ul>
+        <% data['Ratings'].forEach((rating)=>{ %>
+            <li><%=rating.Source %> - <%=rating.Value%></li>
+        <%}) %>
+    
+    </ul>
+
+</div>
+
+
+
+<%- include("./partials/footer") %>   
